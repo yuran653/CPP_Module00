@@ -6,18 +6,23 @@
 #    By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 18:13:01 by jgoldste          #+#    #+#              #
-#    Updated: 2023/07/05 21:47:53 by jgoldste         ###   ########.fr        #
+#    Updated: 2023/07/05 21:47:25 by jgoldste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
-NAME		:= megaphone
+NAME		:= phonebook
+
+HEADER		:= PhoneBook.hpp
+INCLUDES	:= -I
+
 CC			:= g++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++98
+
 SRCS		:= $(wildcard *.cpp)
 OBJS		:= $(patsubst %.cpp,%.o,$(SRCS))
 DEPS		:= $(patsubst %.o,%.d,$(OBJS))
-INCLUDES	:= -Iincludes
+
 RM			:= rm
 
 YELLOW	= "\033[1;33m"
@@ -36,7 +41,7 @@ $(NAME): $(OBJS)
 	@echo $(GREEN) "\n\tProject is compiled\n" ${END}
 
 # Rule for compiling object files
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Rule for generating dependency files
