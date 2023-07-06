@@ -6,28 +6,31 @@
 #    By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 18:13:01 by jgoldste          #+#    #+#              #
-#    Updated: 2023/07/05 21:47:25 by jgoldste         ###   ########.fr        #
+#    Updated: 2023/07/06 15:05:52 by jgoldste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
-NAME		:= phonebook
+NAME        := phonebook
 
-HEADER		:= PhoneBook.hpp
-INCLUDES	:= -I
+HDR         := ./includes/PhoneBook.hpp ./includes/Contact.hpp
+OBJDIR      := object
+INC         := -I./includes
 
-CC			:= g++
-CFLAGS		:= -Wall -Wextra -Werror -std=c++98
+CC          := g++
+CFLAGS      := -Wall -Wextra -Werror -std=c++98
 
-SRCS		:= $(wildcard *.cpp)
-OBJS		:= $(patsubst %.cpp,%.o,$(SRCS))
-DEPS		:= $(patsubst %.o,%.d,$(OBJS))
+SRCS        := $(wildcard *.cpp)
+OBJS        := $(patsubst %.cpp,$(OBJDIR)/%.o,$(SRCS))
+DEPS        := $(patsubst %.cpp,$(OBJDIR)/%.d,$(SRCS))
 
-RM			:= rm
+MKDIR       := mkdir -p
+RM          := rm -rf
 
-YELLOW	= "\033[1;33m"
-GREEN	= "\033[1;32m"
-END		= "\033[0m"
+# Define color codes for output messages
+YELLOW      := "\033[1;33m"
+GREEN       := "\033[1;32m"
+END         := "\033[0m"
 
 # Declare phony targets
 .PHONY: all clean fclean re
@@ -40,25 +43,19 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@echo $(GREEN) "\n\tProject is compiled\n" ${END}
 
-# Rule for compiling object files
-%.o: %.cpp $(HEADER)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-# Rule for generating dependency files
-%.d: %.cpp
-	$(CC) $(CFLAGS) $(INCLUDES) -MM -MT "$*.o $*.d" $< -MF $@
-
-# Include the dependency files
--include $(DEPS)
+# Rule for generating dependency and object files
+$(OBJDIR)/%.o: ./%.cpp $(HDR)
+	$(MKDIR) $(@D)
+	$(CC) $(CFLAGS) $(INC) -g -c -o $@ $< -MD
 
 # Target for cleaning the project
-clean: $(DEPS)
-	$(RM) $(OBJS) $(DEPS)
+clean:
+	@$(RM) $(OBJDIR)
 	@echo $(YELLOW) "\n\tProject 'clean' status: DONE\n" ${END}
 
 # Target for fully cleaning the project
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@echo $(YELLOW) "\n\tProject 'clean' status: DONE\n" ${END}
 
 # Target for rebuilding the project
