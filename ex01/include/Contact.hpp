@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoldste <jgoldste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 12:59:55 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/09 20:54:35 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:00:54 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,24 @@
 
 class Contact {
 	private:
-		std::string	name;
-		// std::string	last_name;
-		// std::string	nickname;
-		// std::string	darkest_secret;
-		// int			phone;
-		// int			idx;
-	public:
-		void inputContact() {
-			std::cout << "Input name: ";
-			std::getline(std::cin, name);
-		}
-		void printContact() {
-			std::cout << "Name: " << std::setw(10) << std::right;
-			if (name.length() > 10)
-				std::cout << name.substr(0, 9) << ".";
-			else
-				std::cout << name;
-			std::cout << std::endl;
-	}
-};
+		std::string	first_name;
+		std::string	last_name;
+		std::string	nickname;
+		std::string	darkest_secret;
+		std::string	phone;
 
-// class Contact
-// {
-// 	private:
-// 		first name, last name, nickname, phone number, and darkest secret
-// }
+	public:
+		Contact();
+		~Contact();
+
+		// Contact	&createContact();
+
+		void		createContact();
+		std::string	&getFirstname();
+		std::string	&getLastname();
+		std::string	&getNickname();
+		std::string	&getPhoneNumber();
+		std::string	&getDarkestSecret();
+};
 
 #endif

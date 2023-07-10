@@ -6,31 +6,33 @@
 #    By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 18:13:01 by jgoldste          #+#    #+#              #
-#    Updated: 2023/07/06 15:05:52 by jgoldste         ###   ########.fr        #
+#    Updated: 2023/07/10 13:30:40 by jgoldste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
-NAME        := phonebook
+NAME		:= phonebook
 
-HDR         := ./includes/PhoneBook.hpp ./includes/Contact.hpp
-OBJDIR      := object
-INC         := -I./includes
+SRCDIR		:= src
+OBJDIR		:= object
+HDRDIR		:= include
+HDR			:= $(wildcard $(HDRDIR)/*.hpp)
+INC			:= -I./include
 
-CC          := g++
-CFLAGS      := -Wall -Wextra -Werror -std=c++98
+CC			:= g++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98
 
-SRCS        := $(wildcard *.cpp)
-OBJS        := $(patsubst %.cpp,$(OBJDIR)/%.o,$(SRCS))
-DEPS        := $(patsubst %.cpp,$(OBJDIR)/%.d,$(SRCS))
+SRCS		:= $(wildcard $(SRCDIR)/*.cpp)
+OBJS		:= $(patsubst %.cpp,$(OBJDIR)/%.o,$(SRCS))
+DEPS		:= $(patsubst %.cpp,$(OBJDIR)/%.d,$(SRCS))
 
-MKDIR       := mkdir -p
-RM          := rm -rf
+MKDIR		:= mkdir -p
+RM			:= rm -rf
 
 # Define color codes for output messages
-YELLOW      := "\033[1;33m"
-GREEN       := "\033[1;32m"
-END         := "\033[0m"
+YELLOW		:= "\033[1;33m"
+GREEN		:= "\033[1;32m"
+END			:= "\033[0m"
 
 # Declare phony targets
 .PHONY: all clean fclean re
@@ -50,12 +52,12 @@ $(OBJDIR)/%.o: ./%.cpp $(HDR)
 
 # Target for cleaning the project
 clean:
-	@$(RM) $(OBJDIR)
+	$(RM) $(OBJDIR)
 	@echo $(YELLOW) "\n\tProject 'clean' status: DONE\n" ${END}
 
 # Target for fully cleaning the project
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 	@echo $(YELLOW) "\n\tProject 'clean' status: DONE\n" ${END}
 
 # Target for rebuilding the project
