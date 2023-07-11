@@ -6,7 +6,7 @@
 /*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:40:38 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/11 23:36:18 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/12 01:23:33 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	PhoneBook::printLine(int len, char symbol) {
 	for (int i = 0; i < len; i++)
 			std::cout << symbol;
 	std::cout << std::endl;
+}
+
+void	PhoneBook::clearInput() {
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void	PhoneBook::printIntro() {
@@ -46,41 +51,35 @@ void	PhoneBook::addContact() {
 		index = 0;
 }
 
+bool	PhoneBook::inputContactIndex(int *int_input) {
+	std::cout << "Enter index of the contact to display: ";
+	std::cin >> *int_input;
+	if (std::cin.fail())
+		return true;
+	else if (*int_input < 1 || *int_input > 8)
+		return true;
+	else
+		return false;
+}
+
 void	PhoneBook::searchContact(){
-	// std::string	str_input;
-	int			int_input;
+	int	int_input;
 
 	if (printPhonebook()){
-		std::cout << "Enter index of the contact to display: ";
-		while (std::cin.fail() >> int_input) {
+		while (inputContactIndex(&int_input)) {
 			std::cout << RED << WRONG_IDX << CLR_END << std::endl;
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			clearInput();
 		}
-		if (int_input >= 1 && int_input <= 8)
-				printContact(int_input - 1);
-	
+		printContact(int_input - 1);
+		clearInput();
 	}
-	
-	// if (printPhonebook()){
-	// 	std::cout << "Enter index of the contact to display: ";
-	// 	std::getline(std::cin, str_input);
-	// 	std::stringstream ss_input(str_input);
-	// 	if (ss_input >> int_input) {
-	// 		if (int_input >= 1 && int_input <= 8)
-	// 			printContact(int_input - 1);
-	// 	}
-	// 	else
-	// 		std::cout << RED << WRONG_IDX << CLR_END << std::endl;
-	// }
 }
 
 void	PhoneBook::printWide10Right(std::string str){
-	std::cout << std::setw(10) << std::right;
 	if (str.length() > 10)
 		std::cout << str.substr(0, 9) << ".";
-	else 
-		std::cout << str;
+	else
+		std::cout << std::setw(10) << std::right << str;
 }
 
 bool	PhoneBook::printPhonebook() {

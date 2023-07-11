@@ -6,7 +6,7 @@
 /*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 12:59:55 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/11 21:41:49 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/12 01:14:34 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #include <iostream>
 #include <string>
-#include <sstream>
 #include <iomanip>
+#include <limits>
 
 class Contact {
 	private:

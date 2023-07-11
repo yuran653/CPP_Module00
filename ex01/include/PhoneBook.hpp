@@ -6,7 +6,7 @@
 /*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:29:13 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/11 19:50:18 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/12 00:54:47 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ private:
 	int		index;
 	void	printIntro();
 	bool	printPhonebook();
+	bool	inputContactIndex(int *int_input);
+	void	clearInput();
 	void	printWide10Right(std::string);
 	void	printContact(int index);
 	void	printLine(int len, char symbol);
