@@ -6,7 +6,7 @@
 /*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:29:13 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/10 20:50:39 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:50:18 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #define PURPLE "\033[35m"
 #define CLR_END "\033[0m"
 #define EMPTY "THE PHONEBOOK IS EMPTY"
+#define WRONG_IDX "INPUT ERROR: Index should be integer in range from 1 to 8"
 #define ERR_MSG "INPUT ERROR: The program accepts ADD, SEARCH and EXIT commands only"
 
 #include "Contact.hpp"
@@ -37,7 +38,9 @@ private:
 	int		index;
 	void	printIntro();
 	bool	printPhonebook();
-	void	printContact();
+	void	printWide10Right(std::string);
+	void	printContact(int index);
+	void	printLine(int len, char symbol);
 
 public:
 	PhoneBook();
