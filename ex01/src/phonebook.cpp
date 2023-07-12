@@ -6,7 +6,7 @@
 /*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:40:38 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/12 01:23:33 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:04:00 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	PhoneBook::printIntro() {
 void	PhoneBook::addContact() {
 	contacts[index].createContact();
 	index ++;
-	if (index == 8)
+	if (index == BOOK_CAPACITY)
 		index = 0;
 }
 
@@ -56,7 +56,7 @@ bool	PhoneBook::inputContactIndex(int *int_input) {
 	std::cin >> *int_input;
 	if (std::cin.fail())
 		return true;
-	else if (*int_input < 1 || *int_input > 8)
+	else if (*int_input < 1 || *int_input > BOOK_CAPACITY)
 		return true;
 	else
 		return false;
@@ -75,7 +75,7 @@ void	PhoneBook::searchContact(){
 	}
 }
 
-void	PhoneBook::printWide10Right(std::string str){
+void	PhoneBook::printWide10Right(const std::string &str){
 	if (str.length() > 10)
 		std::cout << str.substr(0, 9) << ".";
 	else
@@ -83,7 +83,7 @@ void	PhoneBook::printWide10Right(std::string str){
 }
 
 bool	PhoneBook::printPhonebook() {
-	if (contacts[0].getFirstname().empty()) {
+	if (contacts[0].getAttribute("first_name").empty()) {
 		std::cout << RED << EMPTY << CLR_END << std::endl;
 		return false;
 	}
@@ -92,15 +92,15 @@ bool	PhoneBook::printPhonebook() {
 		std::cout << '|' << "   Index  " << '|' << "First name" << '|'
 			<< " Last name" << '|' << " Nickname " << '|' << std::endl;
 		printLine(45, '=');
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < BOOK_CAPACITY; i++) {
 			std::cout << '|';
 			printWide10Right(std::to_string(i + 1));
 			std::cout << '|';
-			printWide10Right(contacts[i].getFirstname());
+			printWide10Right(contacts[i].getAttribute("first_name"));
 			std::cout << '|';
-			printWide10Right(contacts[i].getLastname());
+			printWide10Right(contacts[i].getAttribute("last_name"));
 			std::cout << '|';
-			printWide10Right(contacts[i].getNickname());
+			printWide10Right(contacts[i].getAttribute("nickname"));
 			std::cout << '|' << std::endl;
 		}
 		printLine(45, '=');
@@ -109,9 +109,9 @@ bool	PhoneBook::printPhonebook() {
 }
 
 void	PhoneBook::printContact(int index) {
-	std::cout << "First name: " << contacts[index].getFirstname() << std::endl;
-	std::cout << "Last name: " << contacts[index].getLastname() << std::endl;
-	std::cout << "Nickname: " << contacts[index].getNickname() << std::endl;
-	std::cout << "Phone number: " << contacts[index].getPhoneNumber() << std::endl;
-	std::cout << "Darkest secret: " << contacts[index].getDarkestSecret() << std::endl;
+	std::cout << "First name: " << contacts[index].getAttribute("first_name") << std::endl;
+	std::cout << "Last name: " << contacts[index].getAttribute("last_name") << std::endl;
+	std::cout << "Nickname: " << contacts[index].getAttribute("nickname") << std::endl;
+	std::cout << "Phone number: " << contacts[index].getAttribute("phone_number") << std::endl;
+	std::cout << "Darkest secret: " << contacts[index].getAttribute("darkest_secret") << std::endl;
 }

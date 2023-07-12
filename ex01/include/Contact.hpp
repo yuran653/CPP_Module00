@@ -6,7 +6,7 @@
 /*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 12:59:55 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/12 01:14:34 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:47:25 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ class Contact {
 		std::string	first_name;
 		std::string	last_name;
 		std::string	nickname;
-		std::string	darkest_secret;
 		std::string	phone_number;
+		std::string	darkest_secret;
 
 	public:
 		Contact();
@@ -33,11 +33,7 @@ class Contact {
 		// Contact	&createContact();
 
 		void		createContact();
-		std::string	&getFirstname();
-		std::string	&getLastname();
-		std::string	&getNickname();
-		std::string	&getPhoneNumber();
-		std::string	&getDarkestSecret();
+		std::string &getAttribute(const std::string &attribute);
 };
 
 #endif
