@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+         #
+#    By: jgoldste < jgoldste@student.42bangkok.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 18:13:01 by jgoldste          #+#    #+#              #
-#    Updated: 2023/07/06 15:16:16 by jgoldste         ###   ########.fr        #
+#    Updated: 2023/07/16 00:42:34 by jgoldste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@echo $(GREEN) "\n\tProject is compiled\n" ${END}
 
+# Rule for generating dependency and object files
 %.o: ./%.cpp $(HDR)
 	$(CC) $(CFLAGS) $(INC) -g -c -o $@ $< -MD
 

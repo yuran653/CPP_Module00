@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   time.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jgoldste <jgoldste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:58:33 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/12 18:06:41 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:28:55 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iomanip>
-
 #include <iostream>
 #include <ctime>
 

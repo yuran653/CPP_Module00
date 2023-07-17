@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoldste <jgoldste@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jgoldste < jgoldste@student.42bangkok.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 11:51:00 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/12 14:47:50 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/18 00:23:15 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,64 @@ Contact::Contact(){
 Contact::~Contact(){
 }
 
-void	Contact::createContact() {
-	std::cout << "Input First Name: ";
-	std::getline(std::cin, first_name);
-	
-	std::cout << "Input Last Name: ";
-	std::getline(std::cin, last_name);
-	
-	std::cout << "Input Nickname: ";
-	std::getline(std::cin, nickname);
-	
-	std::cout << "Input Phone Number: ";
-	std::getline(std::cin, phone_number);
-	
-	std::cout << "Input Derkest Secret: ";
-	std::getline(std::cin, darkest_secret);
+bool	Contact::setAttribute(std::string name, std::string *attribute) {
+	std::cout << "Input " << name << ": ";
+	std::getline(std::cin, *attribute);
+	if (attribute->empty()) 
+	//if ((*attribute).empty()) - such syntax is also possible
+		return false;
+	return true;
 }
 
-std::string &Contact::getAttribute(const std::string &attribute) {
-	if (attribute == "first_name")
-		return first_name;
-	else if (attribute == "last_name")
-		return last_name;
-	else if (attribute == "nickname")
-		return nickname;
-	else if (attribute == "phone_number")
-		return phone_number;
-	else if (attribute == "darkest_secret")
-		return darkest_secret;
-	else{
-		std::cout << RED << ATTR_ERROR << CLR_END << std::endl;
-		static std::string empty;
-		return empty;
-	}	
+void	Contact::createContact() {
+	while (setAttribute("First name", &first_name) == false)
+		std::cout << RED EMPTY_FIELD CLR_END << std::endl;
+	while (setAttribute("Last name", &last_name) == false)
+		std::cout << RED EMPTY_FIELD CLR_END << std::endl;
+	while (setAttribute("Nickname", &nickname) == false)
+		std::cout << RED EMPTY_FIELD CLR_END << std::endl;
+	while (setAttribute("Phone Number", &phone_number) == false)
+		std::cout << RED EMPTY_FIELD CLR_END << std::endl;
+	while (setAttribute("Darkest Secret", &darkest_secret) == false)
+		std::cout << RED EMPTY_FIELD CLR_END << std::endl;
 }
+
+std::string	Contact::getFirstName() {
+	return first_name;
+}
+
+std::string	Contact::getLastName() {
+	return last_name;
+}
+
+std::string Contact::getNickname() {
+	return nickname;
+}
+
+std::string Contact::getPhoneNumber() {
+	return phone_number;
+}
+
+std::string Contact::getDarkestSecret() {
+	return darkest_secret;
+}
+
+// std::string	&Contact::getFirstName() {
+// 	return first_name;
+// }
+
+// std::string	&Contact::getLastName() {
+// 	return last_name;
+// }
+
+// std::string &Contact::getNickname() {
+// 	return nickname;
+// }
+
+// std::string &Contact::getPhoneNumber() {
+// 	return phone_number;
+// }
+
+// std::string &Contact::getDarkestSecret() {
+// 	return darkest_secret;
+// }
