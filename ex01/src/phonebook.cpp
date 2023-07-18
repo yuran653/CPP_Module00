@@ -6,7 +6,7 @@
 /*   By: jgoldste < jgoldste@student.42bangkok.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:40:38 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/18 00:23:53 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/19 01:06:09 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 PhoneBook::PhoneBook() {
 	index = 0;
+	is_empty = true;
 	printIntro();
 }
 
@@ -23,6 +24,7 @@ PhoneBook::~PhoneBook() {
 
 void	PhoneBook::addContact() {
 	contacts[index].createContact();
+	is_empty = false;
 	index ++;
 	if (index == BOOK_CAPACITY)
 		index = 0;
@@ -53,7 +55,11 @@ void	PhoneBook::searchContact() {
 }
 
 bool	PhoneBook::printPhonebook() {
-	if (contacts[0].getFirstName().empty()) {
+	// if (contacts[0]->getFirstName().empty()) {
+	// 	std::cout << RED EMPTY_BOOK CLR_END << std::endl;
+	// 	return false;
+	// }
+	if (is_empty == true) {
 		std::cout << RED EMPTY_BOOK CLR_END << std::endl;
 		return false;
 	}

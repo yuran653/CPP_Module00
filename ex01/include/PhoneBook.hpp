@@ -6,7 +6,7 @@
 /*   By: jgoldste < jgoldste@student.42bangkok.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:29:13 by jgoldste          #+#    #+#             */
-/*   Updated: 2023/07/16 00:24:47 by jgoldste         ###   ########.fr       */
+/*   Updated: 2023/07/18 02:05:56 by jgoldste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class PhoneBook
 {
 private:
 	Contact	contacts[BOOK_CAPACITY];
+	bool	is_empty;
 	int		index;
 	
 	void	printIntro();
